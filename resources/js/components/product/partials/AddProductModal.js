@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import {
     Button,
     Modal,
@@ -8,8 +8,8 @@ import {
     FormGroup,
     Label,
     Input
-} from "reactstrap"
-import axios from "axios"
+} from 'reactstrap'
+import axios from 'axios'
 
 class AddProductModal extends React.Component {
     constructor(props) {
@@ -17,15 +17,25 @@ class AddProductModal extends React.Component {
         this.state = {
             modal: false,
             form: {
-                name: "",
-                description: "",
-                price: ""
+                name: '',
+                description: '',
+                price: ''
             }
         }
 
         this.toggle = this.toggle.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    resetForm() {
+        this.setState({
+            form: {
+                name: '',
+                description: '',
+                price: ''
+            }
+        })
     }
 
     handleInputChange(e) {
@@ -39,10 +49,12 @@ class AddProductModal extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        axios.post("/products", this.state.form).then((res) => {
+        axios.post('/products', this.state.form).then(res => {
             const list = res.data
             this.props.updateProductList(list)
         })
+        this.resetForm()
+        this.toggle()
     }
 
     toggle() {

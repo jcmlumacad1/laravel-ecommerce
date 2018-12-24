@@ -1,37 +1,33 @@
-import React from "react"
-import { Table } from "reactstrap"
+import React from 'react'
+import { Table } from 'reactstrap'
 
-export default class Example extends React.Component {
+export default class ProductList extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
     render() {
+        const columns = ['name', 'description', 'price']
         return (
             <Table>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        {columns.map((key, i) => (
+                            <th key={i}>{key}</th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    {this.props.products.map(product => (
+                        <tr key={product.id}>
+                            <th scope="row">{product.id}</th>
+                            {columns.map(key => (
+                                <td key={key + product.id}>{product[key]}</td>
+                            ))}
+                            <td>{this.getActionButtons(product)}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
         )
