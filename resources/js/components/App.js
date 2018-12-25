@@ -33,7 +33,10 @@ export default class App extends Component {
                     updateProductList={this.updateProductList}
                     buttonLabel="Add Product"
                 />
-                <ProductList products={this.state.products} />
+                <ProductList
+                    products={this.state.products}
+                    updateProductList={this.updateProductList}
+                />
             </div>
         )
     }
