@@ -26,6 +26,8 @@
         "sass-loader": "^7.1.0"
     },
     "dependencies": {
-        "reactstrap": "^6.5.0"
+        "react-redux": "^6.0.0",
+        "reactstrap": "^6.5.0",
+        "redux": "^4.0.1"
     }
 }
