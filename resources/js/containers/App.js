@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import AddProduct from './product/partials/AddProductModal'
-import ProductList from './product/partials/ProductList'
+import AddProduct from '../components/product/AddProductModal'
+import ProductList from '../components/product/ProductList'
 
 export default class App extends Component {
     constructor(props) {
