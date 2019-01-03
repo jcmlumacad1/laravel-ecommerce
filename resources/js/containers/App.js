@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import AddProduct from '../components/product/AddProductModal'
 import ProductList from '../components/product/ProductList'
+import { connect } from 'react-redux'
+import { updateProductList } from '../actions/app'
 
-export default class App extends Component {
+class App extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            products: []
-        }
 
         this.updateProductList = this.updateProductList.bind(this)
     }
@@ -21,9 +19,7 @@ export default class App extends Component {
     }
 
     updateProductList(products) {
-        this.setState({
-            products
-        })
+        this.props.updateProductList(products)
     }
 
     render() {
@@ -34,7 +30,7 @@ export default class App extends Component {
                     buttonLabel="Add Product"
                 />
                 <ProductList
-                    products={this.state.products}
+                    products={this.props.products}
                     updateProductList={this.updateProductList}
                 />
             </div>
@@ -42,6 +38,15 @@ export default class App extends Component {
     }
 }
 
-if (document.getElementById('root')) {
-    ReactDOM.render(<App />, document.getElementById('root'))
+const mapStateToProps = state => ({
+    products: state.products.products
+})
+
+const mapDispatchToProps = {
+    updateProductList
 }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App)
